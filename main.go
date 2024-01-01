@@ -1,12 +1,16 @@
 package main
 
 import (
+	"embed"
 	"fmt"
 	"io/fs"
 	"os"
 	"os/exec"
 	"path"
 )
+
+//go:embed templates/*
+var f embed.FS
 
 func main() {
   wd, err := os.Getwd()
@@ -44,7 +48,7 @@ func main() {
 
   mainGoFilePath := modulePath + "/main.go"
 
-  mainGoContent, err := os.ReadFile("templates/main.go.txt")
+  mainGoContent, err := f.ReadFile("templates/main.go.txt")
   if err != nil {
     panic(err)
   }
