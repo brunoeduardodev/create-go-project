@@ -13,14 +13,21 @@ import (
 var f embed.FS
 
 func main() {
+  var p string
+  if len(os.Args) > 1  {
+    p = os.Args[1]
+  }
+
   wd, err := os.Getwd()
   if err != nil {
     panic(err)
   }
 
-  p := ""
-  fmt.Print("Module name: ")
-  fmt.Scanf("%s", &p)
+  if p == "" {
+    fmt.Print("Module name: ")
+    fmt.Scanf("%s", &p)
+  }
+
 
   err = os.Mkdir(p, fs.ModePerm)
   if err != nil {
