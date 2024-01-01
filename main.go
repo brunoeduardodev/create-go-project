@@ -53,6 +53,6 @@ func main() {
     panic(err)
   }
 
-  os.WriteFile(mainGoFilePath, mainGoContent, fs.ModePerm)
+  os.WriteFile(mainGoFilePath, mainGoContent, 0600)
   fmt.Println("Initialized project.")
 }
